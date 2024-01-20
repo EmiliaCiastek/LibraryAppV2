@@ -47,7 +47,9 @@ private fun SearchAuthorsContent(
           .padding(Margin_16),
         query = state.query,
         clearEnabled = state.isClearEnabled,
-        queryChanged = { sendIntent(QueryChanged(it)) },
+        queryChanged = {
+          sendIntent(QueryChanged(it))
+        },
         activeChanged = { sendIntent(ToggleSearch(it)) },
         clearClicked = { sendIntent(ClearSearch) }
       )
@@ -63,10 +65,11 @@ private fun AuthorsList(
   paddingValues: PaddingValues
 ) {
   LazyColumn(
-    modifier = Modifier.padding(paddingValues)
+    modifier = Modifier
+      .padding(paddingValues)
       .padding(horizontal = Margin_16),
     verticalArrangement = spacedBy(Margin_5),
-    ) {
+  ) {
     items(
       items = state.authors,
       key = { it.id }
