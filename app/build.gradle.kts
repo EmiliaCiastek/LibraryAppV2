@@ -64,6 +64,12 @@ dependencies {
   implementation(libs.hilt.android)
   implementation(libs.androidx.work)
   implementation(libs.coil)
+  implementation(libs.retrofit)
+  implementation(libs.retrofit.moshi)
+  implementation(libs.moshi)
+  implementation(libs.okhttp.loggingInterceptor)
+  implementation(libs.moshi.kotlin)
+  kapt(libs.moshi.codegen)
 
   kapt(libs.hilt.compiler)
   kapt(libs.hilt.work.compiler)

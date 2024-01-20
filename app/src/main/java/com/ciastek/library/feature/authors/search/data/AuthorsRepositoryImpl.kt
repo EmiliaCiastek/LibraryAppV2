@@ -1,5 +1,6 @@
 package com.ciastek.library.feature.authors.search.data
 
+import com.ciastek.library.feature.authors.search.data.network.SearchAuthorsApi
 import com.ciastek.library.feature.authors.search.domain.AuthorsRepository
 import com.ciastek.library.feature.authors.search.domain.model.Author
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +12,7 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 internal class AuthorsRepositoryImpl @Inject constructor(
-
+  private val api: SearchAuthorsApi
 ) : AuthorsRepository {
 
   private val authors = listOf(
@@ -60,10 +61,22 @@ internal class AuthorsRepositoryImpl @Inject constructor(
   override val searchResult: Flow<List<Author>> = recentResults
 
   override suspend fun searchAuthors(query: String) {
-    println("LALAL: search $query")
+    val result = if (query.isBlank()) emptyList()
+    else {
+      api.getSearchResults(query)
+        .items.map {
+          Author(
+            id = it.key,
+            name = it.name,
+            worksCount = it.workCount,
+            topWork = it.topWork.orEmpty(),
+            imageUrl = "https://covers.openlibrary.org/a/olid/${it.key}-S.jpg" // TODO: Change to const
+          )
+        }
+    }
+
     recentResults.update {
-      if (query.isBlank()) emptyList()
-      else authors.filter { it.name.contains(query, ignoreCase = true) }
+      result
     }
   }
 }
