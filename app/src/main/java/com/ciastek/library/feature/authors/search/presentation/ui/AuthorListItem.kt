@@ -20,12 +20,12 @@ fun AuthorListItem(
     modifier = Modifier
       .fillMaxWidth()
       .padding(horizontal = Margin_16, vertical = Margin_10)
-      .background(colorScheme.surface),
+      .background(colorScheme.background),
   ) {
     Text(
       text = author,
       style = typography.titleMedium,
-      color = colorScheme.primary
+      color = colorScheme.onBackground
     )
   }
 
