@@ -1,4 +1,4 @@
-package com.ciastek.library.ui.theme
+package com.ciastek.library.common.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

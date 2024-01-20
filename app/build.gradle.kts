@@ -2,6 +2,8 @@
 plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.kotlinAndroid)
+  alias(libs.plugins.kotlin.kapt)
+  id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -57,6 +59,15 @@ dependencies {
   implementation(libs.ui.graphics)
   implementation(libs.ui.tooling.preview)
   implementation(libs.material3)
+  implementation(libs.hilt.navigation)
+  implementation(libs.hilt.gradlePlugin)
+  implementation(libs.hilt.android)
+  implementation(libs.androidx.work)
+
+  kapt(libs.hilt.compiler)
+  kapt(libs.hilt.work.compiler)
+  api(libs.hilt.work)
+
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.test.ext.junit)
   androidTestImplementation(libs.espresso.core)

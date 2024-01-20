@@ -1,4 +1,4 @@
-package com.ciastek.library.ui.theme
+package com.ciastek.library.common.ui.theme
 
 import android.app.Activity
 import android.os.Build
