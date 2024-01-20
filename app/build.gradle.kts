@@ -63,6 +63,7 @@ dependencies {
   implementation(libs.hilt.gradlePlugin)
   implementation(libs.hilt.android)
   implementation(libs.androidx.work)
+  implementation(libs.coil)
 
   kapt(libs.hilt.compiler)
   kapt(libs.hilt.work.compiler)

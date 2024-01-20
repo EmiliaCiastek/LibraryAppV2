@@ -1,5 +1,6 @@
 package com.ciastek.library.feature.authors.search.presentation.ui
 
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import com.ciastek.library.common.ui.preview.LightDarkPreview
 import com.ciastek.library.common.ui.search.BasicSearchBar
 import com.ciastek.library.common.ui.theme.LibraryAppV2Theme
 import com.ciastek.library.common.ui.theme.Spacing.Margin_16
+import com.ciastek.library.common.ui.theme.Spacing.Margin_5
 import com.ciastek.library.feature.authors.search.presentation.SearchAuthorsIntent
 import com.ciastek.library.feature.authors.search.presentation.SearchAuthorsIntent.ClearSearch
 import com.ciastek.library.feature.authors.search.presentation.SearchAuthorsIntent.QueryChanged
@@ -62,10 +64,12 @@ private fun AuthorsList(
 ) {
   LazyColumn(
     modifier = Modifier.padding(paddingValues)
-  ) {
+      .padding(horizontal = Margin_16),
+    verticalArrangement = spacedBy(Margin_5),
+    ) {
     items(
       items = state.authors,
-      key = { it }
+      key = { it.id }
     ) { item ->
       AuthorListItem(item)
     }
@@ -74,7 +78,7 @@ private fun AuthorsList(
 
 @LightDarkPreview
 @Composable
-fun SearchAuthorsScreenPreview(
+private fun SearchAuthorsScreenPreview(
   @PreviewParameter(SearchAuthorsPreview::class)
   state: SearchAuthorsState
 ) {

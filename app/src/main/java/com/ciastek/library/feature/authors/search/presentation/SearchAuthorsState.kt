@@ -1,9 +1,11 @@
 package com.ciastek.library.feature.authors.search.presentation
 
-data class SearchAuthorsState(
+import com.ciastek.library.feature.authors.search.presentation.ui.AuthorState
+
+internal data class SearchAuthorsState(
   val query: String,
   val isClearEnabled: Boolean,
-  val authors: List<String>,
+  val authors: List<AuthorState>,
 ) {
 
   companion object {

@@ -6,6 +6,7 @@ import com.ciastek.library.feature.authors.search.presentation.SearchAuthorsInte
 import com.ciastek.library.feature.authors.search.presentation.SearchAuthorsIntent.QueryChanged
 import com.ciastek.library.feature.authors.search.presentation.SearchAuthorsIntent.ToggleSearch
 import com.ciastek.library.feature.authors.search.presentation.SearchAuthorsState.Companion.empty
+import com.ciastek.library.feature.authors.search.presentation.ui.preview.authors
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted.Companion.Eagerly
@@ -22,25 +23,18 @@ internal class SearchAuthorsViewModel @Inject constructor(
 
   private val isSearching = MutableStateFlow(false)
   private val query = MutableStateFlow("")
-  private val authors = flowOf(
-    listOf(
-      "Tess Gerritsen",
-      "JRR Tolkien",
-      "Mark Twain",
-      "James Patterson"
-    )
-  )
+  private val authorsList = flowOf(authors)
 
   val state =
     combine(
       query,
       isSearching,
-      authors
+      authorsList
     ) { query, isSearchActive, authors ->
       SearchAuthorsState(
         query = query,
         isClearEnabled = isSearchActive,
-        authors = authors.filter { it.contains(query, ignoreCase = true) }
+        authors = authors.filter { it.name.contains(query, ignoreCase = true) }
       )
     }.stateIn(
       initialValue = empty,

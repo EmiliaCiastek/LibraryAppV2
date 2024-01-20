@@ -9,7 +9,7 @@ internal class SearchAuthorsPreview : PreviewParameterProvider<SearchAuthorsStat
     SearchAuthorsState(
       query = "e",
       isClearEnabled = true,
-      authors = listOf("Tess Gerritsen", "JRR Tolkien")
+      authors = authors
     ),
     SearchAuthorsState(
       query = "",
